@@ -19,6 +19,8 @@ package writer
 import (
 	"encoding/json"
 	"io"
+	"io/ioutil"
+	"log"
 )
 
 const (
@@ -32,7 +34,13 @@ func init() {
 // JSONWriter prints data in JSON format
 func JSONWriter(data interface{}, writer io.Writer) error {
 	j, _ := json.MarshalIndent(data, "", "  ")
+	// console log
 	writer.Write(j)
 	writer.Write([]byte{'\n'})
+	// file log
+	err := ioutil.WriteFile("output.json", j, 0644)
+	if err != nil {
+		log.Println(err)
+	}
 	return nil
 }

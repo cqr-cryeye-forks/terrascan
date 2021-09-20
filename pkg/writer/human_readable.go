@@ -31,14 +31,14 @@ const (
 
 	defaultTemplate string = `
 {{if (gt (len .ViolationStore.PassedRules) 0) }}
-Passed Rules - 
+Passed Rules -
     {{range $index, $element := .ViolationStore.PassedRules}}
 	{{passedRules $element | printf "%s"}}
 	-----------------------------------------------------------------------
 	{{end}}
 {{end}}
 {{- if (gt (len .ViolationStore.Violations) 0) }}
-Violation Details - 
+Violation Details -
 	{{- $showDetails := .ViolationStore.Summary.ShowViolationDetails}}
     {{range $index, $element := .ViolationStore.Violations}}
 	{{defaultViolations $element false | printf "%s"}}
@@ -49,7 +49,7 @@ Violation Details -
 	{{end}}
 {{end}}
 {{- if (gt (len .ViolationStore.SkippedViolations) 0) }}
-Skipped Violations - 
+Skipped Violations -
 	{{- $showDetails := .ViolationStore.Summary.ShowViolationDetails}}
 	{{range $index, $element := .ViolationStore.SkippedViolations}}
 	{{defaultViolations $element true | printf "%s"}}
@@ -60,7 +60,7 @@ Skipped Violations -
 	{{end}}
 {{end}}
 {{- if (gt (len .ViolationStore.Vulnerabilities) 0) }}
-Vulnerabilities Details - 
+Vulnerabilities Details -
     {{range $index, $element := .ViolationStore.Vulnerabilities}}
 	{{defaultVulnerabilities $element | printf "%s"}}
 	-----------------------------------------------------------------------
